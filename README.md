@@ -1,6 +1,6 @@
 # GuardianTrackable
 
-A Guardian hook to track user sign in. Tracks the following values:
+A [Guardian](https://github.com/ueberauth/guardian) hook to track user sign in. Tracks the following values:
 
 * `sign_in_count`      - Increased every time a sign in is made
 * `current_sign_in_at` - A timestamp updated when the user signs in

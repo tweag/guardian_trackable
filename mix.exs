@@ -48,7 +48,8 @@ defmodule GuardianTrackable.Mixfile do
       {:guardian, ">= 1.0.0-beta.0"},
       {:ecto, "~> 2.1 or ~> 2.2"},
       {:plug, "~> 1.3.3 or ~> 1.4", optional: true},
-      {:postgrex, ">= 0.0.0", only: :test, optional: true}
+      {:postgrex, ">= 0.0.0", only: :test, optional: true},
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
   end
 

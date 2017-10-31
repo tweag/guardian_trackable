@@ -22,6 +22,20 @@ end
 
 ## Usage
 
+First, you'll need to add the columns for tracking to your table. Add the following in a migration:
+
+```elixir
+def change do
+  alter table(:users) do
+    add :sign_in_count, :integer, default: 0
+    add :last_sign_in_ip, :string
+    add :last_sign_in_at, :utc_datetime
+    add :current_sign_in_ip, :string
+    add :current_sign_in_at, :utc_datetime
+  end
+end
+```
+
 To use it, you'll need to setup your schema like this:
 
 ```elixir

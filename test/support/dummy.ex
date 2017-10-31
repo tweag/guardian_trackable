@@ -32,7 +32,7 @@ defmodule GuardianTrackable.Dummy.Guardian do
 
   @impl true
   def after_sign_in(conn, resource, _, _, _) do
-    GuardianTrackable.track!(Repo, conn, resource)
+    GuardianTrackable.track!(Repo, resource, conn.remote_ip)
     {:ok, conn}
   end
 end

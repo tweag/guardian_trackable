@@ -26,7 +26,7 @@ defmodule GuardianTrackable do
 
         @impl true
         def after_sign_in(conn, resource, _token, _claims, _opts) do
-          GuardianTrackable.track!(MyApp.Repo, conn, resource)
+          GuardianTrackable.track!(MyApp.Repo, resource, conn.remote_ip)
           {:ok, conn}
         end
       end
@@ -38,7 +38,7 @@ defmodule GuardianTrackable do
 
   ## Example
 
-      iex> GuardianTrackable.track!(MyApp.Repo, user, conn)
+      iex> GuardianTrackable.track!(MyApp.Repo, user, {127, 0, 0, 1})
       %User{
         current_sign_in_at: #DateTime<2017-10-31 19:42:42.372012Z>,
         current_sign_in_ip: "127.0.0.1",
@@ -50,12 +50,12 @@ defmodule GuardianTrackable do
   """
   @spec track!(
     repo :: Ecto.Repo.t,
-    conn :: Plug.Conn.t,
-    resource :: Ecto.Schema.t
+    resource :: Ecto.Schema.t,
+    ip_address :: :inet.ip_address
   ) :: Ecto.Schema.t | no_return
-  def track!(repo, conn, resource) do
+  def track!(repo, resource, ip_address) do
     resource
-    |> trackable_changeset(conn)
+    |> trackable_changeset(ip_address)
     |> repo.update!
   end
 
@@ -64,7 +64,7 @@ defmodule GuardianTrackable do
 
   ## Example
 
-      iex> GuardianTrackable.trackable_changeset(user, conn)
+      iex> GuardianTrackable.trackable_changeset(user, {127, 0, 0, 1})
       %Ecto.Changset{changes: %{
         current_sign_in_at: #DateTime<2017-10-31 19:42:42.372012Z>,
         current_sign_in_ip: "127.0.0.1",
@@ -76,11 +76,11 @@ defmodule GuardianTrackable do
   """
   @spec trackable_changeset(
     resource :: Ecto.Schema.t,
-    conn :: Plug.Conn.t
+    ip_address :: :inet.ip_address
   ) :: Ecto.Changeset.t
-  def trackable_changeset(resource, conn) do
+  def trackable_changeset(resource, ip_address) do
     now        = DateTime.utc_now
-    ip_address = conn.remote_ip |> Tuple.to_list |> Enum.join(".")
+    ip_address = ip_address |> Tuple.to_list |> Enum.join(".")
 
     old_at     = resource.current_sign_in_at
     old_ip     = resource.current_sign_in_ip

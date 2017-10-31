@@ -1,6 +1,5 @@
 defmodule GuardianTrackableTest do
   use GuardianTrackable.DataCase, async: true
-  doctest GuardianTrackable
 
   alias GuardianTrackable.Dummy.{Repo, User, Guardian}
 

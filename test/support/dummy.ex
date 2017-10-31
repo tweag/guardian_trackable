@@ -18,8 +18,6 @@ end
 
 defmodule GuardianTrackable.Dummy.Guardian do
   use Guardian, otp_app: :guardian_trackable
-  use GuardianTrackable, repo: GuardianTrackable.Dummy.Repo
-
   alias GuardianTrackable.Dummy.{Repo, User}
 
   @impl true
@@ -30,5 +28,11 @@ defmodule GuardianTrackable.Dummy.Guardian do
   @impl true
   def resource_from_claims(%{"sub" => id}) do
     {:ok, Repo.get!(User, id)}
+  end
+
+  @impl true
+  def after_sign_in(conn, resource, _, _, _) do
+    GuardianTrackable.track!(Repo, conn, resource)
+    {:ok, conn}
   end
 end

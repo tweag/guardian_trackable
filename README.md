@@ -15,7 +15,7 @@ The package can be installed by adding `guardian_trackable` to your list of depe
 ```elixir
 def deps do
   [
-    {:guardian_trackable, "~> 0.1.0"}
+    {:guardian_trackable, "~> 0.1.0-beta"}
   ]
 end
 ```

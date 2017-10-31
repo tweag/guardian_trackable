@@ -4,6 +4,7 @@ defmodule GuardianTrackable.Mixfile do
   def project do
     [
       app: :guardian_trackable,
+      package: package(),
       version: "0.1.0",
       elixir: "~> 1.5",
       elixirc_paths: elixirc_paths(Mix.env),
@@ -23,6 +24,16 @@ defmodule GuardianTrackable.Mixfile do
 
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_),     do: ["lib"]
+
+  defp package do
+    [
+      description: "A Guardian hook to track user sign in.",
+      files: ["lib", "config", "mix.exs", "README.md", "LICENSE.txt"],
+      maintainers: ["Ray Zane"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/promptworks/guardian_trackable"}
+    ]
+  end
 
   # Run "mix help compile.app" to learn about applications.
   def application do

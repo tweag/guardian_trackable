@@ -49,3 +49,17 @@ defmodule MyApp.Guardian do
   end
 end
 ```
+
+## Running tests
+
+Before you can run the tests, you'll need to setup a database:
+
+```
+$ mix ecto.setup
+```
+
+Now, run the tests:
+
+```
+$ mix test
+```

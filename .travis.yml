@@ -5,4 +5,5 @@ services:
   - postgresql
 
 before_script:
+  - mix compile --warnings-as-errors
   - mix ecto.setup

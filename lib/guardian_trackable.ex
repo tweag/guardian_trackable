@@ -49,10 +49,10 @@ defmodule GuardianTrackable do
 
   """
   @spec track!(
-    repo :: Ecto.Repo.t,
-    resource :: Ecto.Schema.t,
-    ip_address :: :inet.ip_address
-  ) :: Ecto.Schema.t | no_return
+          repo :: Ecto.Repo.t(),
+          resource :: Ecto.Schema.t(),
+          ip_address :: :inet.ip_address()
+        ) :: Ecto.Schema.t() | no_return
   def track!(repo, resource, ip_address) do
     resource
     |> trackable_changeset(ip_address)
@@ -75,16 +75,16 @@ defmodule GuardianTrackable do
 
   """
   @spec trackable_changeset(
-    resource :: Ecto.Schema.t,
-    ip_address :: :inet.ip_address
-  ) :: Ecto.Changeset.t
+          resource :: Ecto.Schema.t(),
+          ip_address :: :inet.ip_address()
+        ) :: Ecto.Changeset.t()
   def trackable_changeset(resource, ip_address) do
-    now        = DateTime.utc_now
-    ip_address = ip_address |> Tuple.to_list |> Enum.join(".")
+    now = DateTime.utc_now()
+    ip_address = ip_address |> Tuple.to_list() |> Enum.join(".")
 
-    old_at     = resource.current_sign_in_at
-    old_ip     = resource.current_sign_in_ip
-    old_count  = resource.sign_in_count
+    old_at = resource.current_sign_in_at
+    old_ip = resource.current_sign_in_ip
+    old_count = resource.sign_in_count
 
     params = %{
       sign_in_count: old_count + 1,

@@ -1,6 +1,8 @@
 defmodule Mix.Tasks.Guardian.Db.Gen.MigrationTest do
   use GuardianTrackable.DataCase, async: true
+
   import Mix.Tasks.GuardianTrackable.Install, only: [run: 1]
+  import ExUnit.CaptureIO
 
   @tmp_path Path.join(["priv", "tmp"])
   @migrations_path Path.join([@tmp_path, "migrations"])
@@ -31,22 +33,26 @@ defmodule Mix.Tasks.Guardian.Db.Gen.MigrationTest do
     :ok
   end
 
+  defp silent_run(args) do
+    capture_io(fn -> run(args) end)
+  end
+
   test "generates a new migration" do
-    run([])
+    silent_run([])
 
     assert name = File.ls!(@migrations_path) |> List.last
     assert String.match?(name, ~r/^\d{14}_guardian_trackable\.exs$/)
   end
 
   test "generates a new migration with repo" do
-    run(["-r", to_string(DoubleDummy.Repo)])
+    silent_run(["-r", to_string(DoubleDummy.Repo)])
 
     assert name = File.ls!("priv/tmp/double_dummy/migrations") |> List.last
     assert String.match?(name, ~r/^\d{14}_guardian_trackable\.exs$/)
   end
 
   test "generates a new migration with schema" do
-    run(["--schema", "accounts"])
+    silent_run(["--schema", "accounts"])
 
     assert name = File.ls!(@migrations_path) |> List.last
     assert @migrations_path

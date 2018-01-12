@@ -1,4 +1,4 @@
-# GuardianTrackable
+# GuardianTrackable [![Build Status](https://travis-ci.org/promptworks/guardian_trackable.svg?branch=master)](https://travis-ci.org/promptworks/guardian_trackable)
 
 A [Guardian](https://github.com/ueberauth/guardian) hook to track user sign in. Tracks the following values:
 

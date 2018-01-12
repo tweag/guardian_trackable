@@ -28,7 +28,14 @@ defmodule GuardianTrackable.Mixfile do
   defp package do
     [
       description: "A Guardian hook to track user sign in.",
-      files: ["lib", "config", "mix.exs", "README.md", "LICENSE.txt"],
+      files: [
+        "lib",
+        "config",
+        "mix.exs",
+        "README.md",
+        "LICENSE.txt",
+        "priv/templates"
+      ],
       maintainers: ["Ray Zane"],
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/promptworks/guardian_trackable"}

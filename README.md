@@ -22,7 +22,13 @@ end
 
 ## Usage
 
-First, you'll need to add the columns for tracking to your table. Add the following in a migration:
+First, you'll need to add the columns for tracking to your table. You can generate the migration using Mix:
+
+```bash
+mix guardian_trackable.install
+```
+
+Alternatively, you can create it manually:
 
 ```elixir
 def change do

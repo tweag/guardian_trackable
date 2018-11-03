@@ -2,11 +2,11 @@
 
 A [Guardian](https://github.com/ueberauth/guardian) hook to track user sign in. Tracks the following values:
 
-* `sign_in_count`      - Increased every time a sign in is made
-* `current_sign_in_at` - A timestamp updated when the user signs in
-* `last_sign_in_at`    - Holds the timestamp of the previous sign in
-* `current_sign_in_ip` - The remote ip updated when the user sign in
-* `last_sign_in_ip`    - Holds the remote ip of the previous sign in
+- `sign_in_count` - Increased every time a sign in is made
+- `current_sign_in_at` - A timestamp updated when the user signs in
+- `last_sign_in_at` - Holds the timestamp of the previous sign in
+- `current_sign_in_ip` - The remote ip updated when the user sign in
+- `last_sign_in_ip` - Holds the remote ip of the previous sign in
 
 ## Installation
 
@@ -15,10 +15,12 @@ The package can be installed by adding `guardian_trackable` to your list of depe
 ```elixir
 def deps do
   [
-    {:guardian_trackable, "~> 0.1.0-beta"}
+    {:guardian_trackable, "~> 0.2.0"}
   ]
 end
 ```
+
+> Use version 0.1.1 if you need Ecto 2.x support.
 
 ## Usage
 

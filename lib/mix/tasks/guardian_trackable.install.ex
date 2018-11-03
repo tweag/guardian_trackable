@@ -36,7 +36,7 @@ defmodule Mix.Tasks.GuardianTrackable.Install do
 
     Enum.each(repos, fn repo ->
       ensure_repo(repo, args)
-      path = migrations_path(repo)
+      path = Ecto.Migrator.migrations_path(repo)
       file = Path.join(path, "#{timestamp()}_guardian_trackable.exs")
       create_directory(path)
 

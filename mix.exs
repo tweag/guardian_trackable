@@ -7,8 +7,8 @@ defmodule GuardianTrackable.Mixfile do
       package: package(),
       version: "0.1.1",
       elixir: "~> 1.5",
-      elixirc_paths: elixirc_paths(Mix.env),
-      start_permanent: Mix.env == :prod,
+      elixirc_paths: elixirc_paths(Mix.env()),
+      start_permanent: Mix.env() == :prod,
       deps: deps(),
       aliases: aliases(),
       preferred_cli_env: [
@@ -23,7 +23,7 @@ defmodule GuardianTrackable.Mixfile do
   end
 
   defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_),     do: ["lib"]
+  defp elixirc_paths(_), do: ["lib"]
 
   defp package do
     [
@@ -53,7 +53,8 @@ defmodule GuardianTrackable.Mixfile do
   defp deps do
     [
       {:guardian, "~> 1.0"},
-      {:ecto, "~> 2.1 or ~> 2.2"},
+      {:ecto, "~> 3.0"},
+      {:ecto_sql, "~> 3.0.0"},
       {:plug, "~> 1.3.3 or ~> 1.4", optional: true},
       {:postgrex, ">= 0.0.0", only: :test, optional: true},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}

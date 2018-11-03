@@ -40,24 +40,25 @@ defmodule Mix.Tasks.Guardian.Db.Gen.MigrationTest do
   test "generates a new migration" do
     silent_run([])
 
-    assert name = File.ls!(@migrations_path) |> List.last
+    assert name = File.ls!(@migrations_path) |> List.last()
     assert String.match?(name, ~r/^\d{14}_guardian_trackable\.exs$/)
   end
 
   test "generates a new migration with repo" do
     silent_run(["-r", to_string(DoubleDummy.Repo)])
 
-    assert name = File.ls!("priv/tmp/double_dummy/migrations") |> List.last
+    assert name = File.ls!("priv/tmp/double_dummy/migrations") |> List.last()
     assert String.match?(name, ~r/^\d{14}_guardian_trackable\.exs$/)
   end
 
   test "generates a new migration with schema" do
     silent_run(["--schema", "accounts"])
 
-    assert name = File.ls!(@migrations_path) |> List.last
+    assert name = File.ls!(@migrations_path) |> List.last()
+
     assert @migrations_path
-      |> Path.join(name)
-      |> File.read!
-      |> String.match?(~r/:accounts/)
+           |> Path.join(name)
+           |> File.read!()
+           |> String.match?(~r/:accounts/)
   end
 end

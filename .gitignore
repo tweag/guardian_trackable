@@ -21,3 +21,6 @@ erl_crash.dump
 
 # Ignore tmp directory used during tests
 /priv/tmp
+
+# Ignore the vscode elixir dialyzer
+.elixir_ls/

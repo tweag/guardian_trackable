@@ -29,6 +29,7 @@ defmodule GuardianTrackableTest do
     conn2 = make_conn({1, 1, 1, 1})
 
     Guardian.Plug.sign_in(conn1, user)
+    Process.sleep(1001)
     Guardian.Plug.sign_in(conn2, Repo.reload!(user))
 
     user = Repo.reload!(user)

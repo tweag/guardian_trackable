@@ -1,5 +1,7 @@
 defmodule GuardianTrackable.Dummy.Repo do
-  use Ecto.Repo, otp_app: :guardian_trackable
+  use Ecto.Repo,
+    otp_app: :guardian_trackable,
+    adapter: Ecto.Adapters.Postgres
 
   def reload!(struct) do
     get!(struct.__struct__, struct.id)
@@ -11,7 +13,7 @@ defmodule GuardianTrackable.Dummy.User do
   use GuardianTrackable.Schema
 
   schema "users" do
-    field :email, :string
+    field(:email, :string)
     guardian_trackable()
   end
 end

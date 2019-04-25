@@ -1,5 +1,6 @@
 language: elixir
 elixir:
+  - 1.8.1
   - 1.7.4
   - 1.6.6
   - 1.5.3
@@ -9,5 +10,5 @@ services:
 
 before_script:
   - mix compile --warnings-as-errors
-  - if elixir --version | grep -q 1.7; then mix format --check-formatted; fi
+  - if elixir --version | grep -q 1.8; then mix format --check-formatted; fi
   - mix ecto.setup

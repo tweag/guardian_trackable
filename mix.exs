@@ -56,6 +56,7 @@ defmodule GuardianTrackable.Mixfile do
       {:ecto, "~> 3.0"},
       {:ecto_sql, "~> 3.0"},
       {:plug, ">= 0.0.0", only: :test, optional: true},
+      {:jason, ">= 0.0.0", only: :test, optional: true},
       {:postgrex, ">= 0.0.0", only: :test, optional: true},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]

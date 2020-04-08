@@ -5,7 +5,7 @@ defmodule GuardianTrackable.Mixfile do
     [
       app: :guardian_trackable,
       package: package(),
-      version: "0.2.1",
+      version: "0.2.2",
       elixir: "~> 1.5",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
@@ -52,10 +52,9 @@ defmodule GuardianTrackable.Mixfile do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:guardian, "~> 1.0"},
-      {:ecto, "~> 3.0"},
+      {:guardian, "~> 1.0 or ~> 2.0"},
       {:ecto_sql, "~> 3.0"},
-      {:plug, ">= 0.0.0", only: :test, optional: true},
+      {:plug, ">= 0.0.0", only: [:dev, :test], optional: true},
       {:jason, ">= 0.0.0", only: :test, optional: true},
       {:postgrex, ">= 0.0.0", only: :test, optional: true},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
